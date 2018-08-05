@@ -23,6 +23,12 @@ class MonsterManager {
   static shared_ptr<MonsterManager> GetInstance();
 
   /**
+   * @brief
+   *
+   */
+  void clear();
+
+  /**
    * @brief Get the Monsters object
    *
    * @param floor

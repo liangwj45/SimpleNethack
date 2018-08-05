@@ -29,11 +29,19 @@ void NethackUI::Initital() {
   stop_singal_ = false;
   action_ = false;
 
-  int x = rand(0, 2) * 9 + 2 + rand(1, 6);
-  int y = rand(0, 2) * 23 + 2 + rand(1, 20);
-  Position pos(x, y);
-  player_ = Player::GetInstance(pos);
-  nethack_ = Nethack::GetInstance();
+  do {
+    int x = rand(0, 2) * 9 + 2 + rand(1, 6);
+    int y = rand(0, 2) * 23 + 2 + rand(1, 20);
+    Position pos(x, y);
+    try {
+      player_ = Player::GetInstance(pos);
+      nethack_ = Nethack::GetInstance();
+      break;
+    } catch (...) {
+      Player::Destroy();
+      Nethack::Destroy();
+    }
+  } while (1);
 
   event_log_.clear();
   UpdateData();
@@ -52,8 +60,8 @@ void NethackUI::GameLoop() {
         UpdateView();
         EnemyRound();
       }
-    } catch (const char* e) {
-      PrintEvent(string(e));
+    } catch (...) {
+      PrintEvent(string("error"));
     }
   }
   PrintEvent(tostring("Hp: ", player_->GetHp()));
@@ -66,7 +74,7 @@ char NethackUI::GetOperation() {
   char c = _getch();
   if (operations.find(c) == operations.end() && !isdigit(c))
     throw "invalid operation";
-  if (isdigit(c) && !open_bag_) throw "Bag is not open";
+  if (isdigit(c) && !open_bag_) throw "bag is not open";
   return c;
 }
 

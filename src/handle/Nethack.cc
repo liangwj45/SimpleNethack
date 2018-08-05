@@ -11,7 +11,12 @@ std::shared_ptr<Nethack> Nethack::GetInstance() {
   return instance_;
 }
 
-void Nethack::Destroy() { instance_ = nullptr; }
+void Nethack::Destroy() {
+  MapManager::GetInstance()->clear();
+  ViewManager::GetInstance()->clear();
+  MonsterManager::GetInstance()->clear();
+  instance_ = nullptr;
+}
 
 Nethack::Nethack() { Initial(); }
 

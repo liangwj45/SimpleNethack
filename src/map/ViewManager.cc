@@ -11,6 +11,8 @@ shared_ptr<ViewManager> ViewManager::GetInstance() {
   return instance_;
 }
 
+void ViewManager::clear() { views_.clear(); }
+
 shared_ptr<View> ViewManager::GetView(int floor, const Position& pos) {
   if (views_.size() <= floor) {
     views_.push_back(make_shared<View>(pos));

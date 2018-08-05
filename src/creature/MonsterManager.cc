@@ -11,6 +11,8 @@ shared_ptr<MonsterManager> MonsterManager::GetInstance() {
   return instance_;
 }
 
+void MonsterManager::clear() { monsters_.clear(); }
+
 MonsterManager::MonsterManager() {}
 
 MonsterManager::~MonsterManager() {}

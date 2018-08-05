@@ -11,6 +11,8 @@ shared_ptr<MapManager> MapManager::GetInstance() {
   return instance_;
 }
 
+void MapManager::clear() { maps_.clear(); }
+
 shared_ptr<Map> MapManager::GetMap(int floor, const Position& pos) {
   if (maps_.size() <= floor) {
     maps_.push_back(make_shared<Map>(pos));

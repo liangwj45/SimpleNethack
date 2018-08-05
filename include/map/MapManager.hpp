@@ -23,6 +23,12 @@ class MapManager {
   static shared_ptr<MapManager> GetInstance();
 
   /**
+   * @brief
+   *
+   */
+  void clear();
+
+  /**
    * @brief Get the Map object
    *
    * @param id

@@ -23,6 +23,12 @@ class ViewManager {
   static shared_ptr<ViewManager> GetInstance();
 
   /**
+   * @brief
+   *
+   */
+  void clear();
+
+  /**
    * @brief Get the View object
    *
    * @param id
